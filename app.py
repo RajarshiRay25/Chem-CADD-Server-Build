@@ -50,7 +50,7 @@ print(df_ca2.head())
 st.title("**Chem-CADD** : A data-driven toolbox for hit identification and Drug design")
 st.sidebar.header("💻Cheminformatics Workflows💊")
 
-sidebar_render = st.sidebar.radio("Navigate to : ",["Home","Dataset Analysis","Chemical Analysis","ADMET Analysis","Molecular Similarity Analysis","Descriptor Calculation","Scaffold Analysis","Molecule Sketcher and Viewer" , "Ligand Preparation and SDF Download", "QSAR Modelling for CAs", "About Us"])
+sidebar_render = st.sidebar.radio("Navigate to : ",["Home","Dataset Analysis","Chemical Analysis","ADMET Analysis","Molecular Similarity Analysis","Descriptor Calculation","Scaffold Analysis","Molecule Sketcher and Viewer" , "Ligand Preparation and SDF Download", "QSAR Modelling for proteins", "About Us"])
 st.sidebar.image("chemcaddlogo.png", use_column_width=True)
 
 if sidebar_render == "Home":
@@ -71,7 +71,7 @@ if sidebar_render == "Home":
         "🧬 **Scaffold Analysis**: Evaluating the chemical frameworks of the compounds.",
         "✏️ **Molecule Sketcher and Viewer**: Visualizing molecular structures for better understanding.",
         "📥 **Ligand Preparation and SDF Download**: Preparing ligands and allowing for SDF file downloads for further modeling.",
-        "📈 **QSAR Modelling for CAs**: Understanding the quantitative relationship between chemical structure and biological activity."
+        "📈 **QSAR Modelling for target proteins**: Understanding the quantitative relationship between chemical structure and biological activity."
     ]
 
     # Display each feature in the list
@@ -1038,8 +1038,8 @@ if sidebar_render == "Ligand Preparation and SDF Download":
     else:
         st.warning("Please Upload Correct File")
 
-if sidebar_render == "QSAR Modelling for CAs":
-    st.header("Upload your QSAR dataset for CA")
+if sidebar_render == "QSAR Modelling for proteins":
+    st.header("Upload your QSAR dataset for proteins")
     st.warning('Please refer to the sample dataset to understand the required structure for uploading your data.', icon="⚠️")
     st.write("###### This feature enables users to upload their chemical datasets for QSAR (Quantitative Structure-Activity Relationship) analysis using advanced Artificial Intelligence (AI) and Machine Learning (ML) algorithms. Our platform employs predictive modeling techniques that utilize various molecular descriptors, both morphological and functional, to forecast the biological activity—particularly the inhibition potential—of chemical candidates against Carbonic Anhydrase (CA) 2 and 9. The analysis is powered by Random Forest Regression models combined with K-Fold cross-validation to enhance model accuracy and performance. 🚀🔬💡")
 
