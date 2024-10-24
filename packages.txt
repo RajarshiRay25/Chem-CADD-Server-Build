@@ -1,1 +1,1 @@
-libXrender1
+libxrender1
