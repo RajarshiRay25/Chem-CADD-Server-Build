@@ -1084,6 +1084,14 @@ if sidebar_render == "QSAR Modelling for proteins":
         st.write("#### Regression QSAR Dataset")
         st.write(regression_data.head())
 
+
+        # Dataset processing to ensure preservation for pIC50 column during variance threshold
+
+        # Ensure pIC50 is retained by setting aside before filtering
+        pIC50 = regression_data["pIC50"]  # Store pIC50 separately
+        features_only = regression_data.drop(columns=['pIC50'])  # Drop pIC50 temporarily
+
+
         # Variance Threshold
         threshold = VarianceThreshold(threshold=0.1)
         def variance_threshold_selector(data, threshold=0.15):
@@ -1094,7 +1102,9 @@ if sidebar_render == "QSAR Modelling for proteins":
         
         # Filter the dataset with only high variance data
 
-        regression_data_HV = variance_threshold_selector(regression_data)
+        regression_data_HV = variance_threshold_selector(features_only)
+        regression_data_HV = pd.concat([regression_data_HV, pIC50], axis=1)
+
         st.write("#### QSAR Dataset with variance threshold filtering")
         st.write(regression_data_HV.head())
 
@@ -1237,7 +1247,7 @@ if sidebar_render == "QSAR Modelling for proteins":
             X_test_scaled = scaler.transform(X_test)
 
             # Step 2: Perform PCA on the training set
-            pca = PCA(n_components=5)  # Adjust the number of components to retain relevant variance
+            pca = PCA(n_components=2)  # Adjust the number of components to retain relevant variance
             X_train_pca = pca.fit_transform(X_train_scaled)
             X_test_pca = pca.transform(X_test_scaled)
 
